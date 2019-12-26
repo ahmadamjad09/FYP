@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Software Application Request Form</h2><br>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form action="{{ url_for('software_request_save') }}" method="post">
+         <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">NCP Id.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="User Id" class="form-control" readonly value="{{id}}"/>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Software Name*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Software Name" class="form-control" required name="softwarename" pattern="[A-Za-z' ']*"/>
+              </div>
+          </div><br>
+         <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Type*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="softtype" required>
+                       <option value="New" onclick="dis()">New</option>
+                      <option value="Existing" onclick="unable()">Existing</option>
+                  </select>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">Discription:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Discription" class="form-control"  name="sofdis" pattern="[A-Za-z' '0-9,-]*" />
+              </div>
+         </div>
+          <br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Forward To*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+              </div>
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+           <a href="{{ url_for('Back1') }}"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+      </form>
+
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+  function unable()
+  {
+    document.getElementById('softe').disabled=false;
+  }
+   function dis()
+  {
+    document.getElementById('softe').disabled=true;
+    document.getElementById('eo').disabled=true;
+  }
+   function unable1()
+  {
+    document.getElementById('eo').disabled=false;
+  }
+   function dis1()
+  {
+    document.getElementById('eo').disabled=true;
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Documents To sign by Me</h2><br>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+
+            <table class="table table-bordered">
+                <thead class="bg-primary">
+                <th>#</th>
+                <th>Document Title</th>
+                <th>Date</th>
+                <th>Sign</th>
+                </thead>
+                <tbody>
+                 {% for id, title , date in row %}
+                  <form action="{{url_for('signed_app')}}" method="post">
+                <tr>
+                    <td><input type="text" class="form-control" value="{{id}}" size="1" readonly name="signapp"></td>
+                    <td>{{title}}</td>
+                    <td>{{date}}</td>
+                    <td><button type="submit" class="btn btn-primary">Sign</button></td>
+                </tr>
+                       </form>
+                 {% endfor %}
+                </tbody>
+            </table>
+             <a href="{{url_for('Back')}}"><button type="button" class="btn btn-primary mb-2">Back</button></a>
+
+        </div>
+    </div>
+</div>
+</br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+{% endblock %}

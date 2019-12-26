@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Website Modification Form</h2><br>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form action="{{ url_for('website_request_save') }}" method="post">
+         <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">NCP Id.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="User Id" class="form-control" readonly value="{{id}}"/>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">Webpage*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="webtype" required>
+                       <option value="Modification">Modification</option>
+                      <option value="New">New</option>
+                  </select>
+              </div>
+          </div><br>
+         <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">Detail:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Details" class="form-control" pattern="[A-Za-z0-9,-' ']*" name="webdetail"/>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">Forward To*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+              </div>
+         </div>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          <a href="{{ url_for('Back1') }}"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+      </form>
+
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+
+{% endblock %}

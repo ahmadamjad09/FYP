@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <div class="container text-center">
+    <img src="{{url_for ('static',  filename='images/EDH.png')}}" class="img-responsive"/>
+
+
+  </div>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+        {% if msg %}
+		    <h3 class="text-danger">{{msg}}</h3>
+		 {% endif %}
+        {% if row %}
+		    <h3 class="text-success">{{row}}</h3>
+		 {% endif %}
+  <div class="row " >
+    <div class="col-sm-2">
+      <h2 class="bg-primary">Task</h2>
+    </div>
+  </div>
+
+  <div class="row Border">
+    <div class="col-sm-1">
+      <a href="{{ url_for('application') }}"><h5>Application</h5></a>
+      <a href="{{ url_for('application') }}"> <img src=" {{url_for ('static',  filename='images/app.png')}}" class="img-responsive" alt="Write Application"/></a>
+    </div>
+    <div class="col-sm-1">
+      <a href="{{ url_for('it') }}"><h5>IT</h5></a>
+      <a href="{{ url_for('it') }}"> <img src="{{url_for ('static',  filename='images/it2.png')}}" class="img-responsive" alt="IT"/></a>
+    </div>
+    <div class="col-sm-1">
+      <a href="{{ url_for('opencadd') }}"><h5>CAAD</h5></a>
+      <a href="{{ url_for('opencadd') }}"> <img src="{{url_for ('static',  filename='images/admin.png')}}" class="img-responsive" alt="Hosted Researcher Registration"/></a>
+    </div>
+    <div class="col-sm-1">
+      <a href="{{ url_for('Manager') }}"><h5>Managers</h5></a>
+      <a href="{{ url_for('Manager') }}"> <img src="{{url_for ('static',  filename='images/admin.png')}}" class="img-responsive" alt="Hosted Researcher Registration"/></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <h2 class="bg-primary">Search</h2>
+    </div>
+  </div>
+  <div class="row Border">
+    <div class="col-sm-1">
+      <a href="{{ url_for('document_created') }}" ><h5>Documents Created By Me</h5></a>
+      <a href="{{ url_for('document_created') }}" ><img src="{{url_for ('static',  filename='images/search.png')}}" class="img-responsive" alt="Application Signed by me"/></a>
+    </div>
+    <div class="col-sm-1">
+      <a href="{{ url_for('document_sign') }}"><h5>Documents To Sign By Me</h5></a>
+      <a href="{{ url_for('document_sign') }}"><img src="{{url_for ('static',  filename='images/search.png')}}" class="img-responsive" alt="Application written by me"/></a>
+    </div>
+  </div>
+
+</div><br><br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+{% endblock %}
+
+

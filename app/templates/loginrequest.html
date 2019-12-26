@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Account Login Request Form</h2><br>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+      <form action="{{ url_for('save_login_request') }}" method="post" enctype="multipart/form-data">
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">NCP ID No.</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="NCP ID No." class="form-control" readonly value="{{id}}"/>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Building*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Building" class="form-control" name="logingbuilding" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+          </div><br>
+          <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">Floor*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Floor" class="form-control" name="loginflorr" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+               <div class="col-sm-2">
+                  <label class="col-form-label">Room No.*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Room No." class="form-control" name="loginroom" pattern="{0-9}[1,]" required/>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label"><u>Services Required*</u></label>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label"><u>Yes</u></label>
+              </div>
+               <div class="col-sm-2">
+                   <label class="col-form-label"><u>No</u></label>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">1. Window Login Account</label>
+              </div>
+              <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="degree" value="Yes">
+              </div>
+               <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="degree" value="No">
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">2. Email Account</label>
+              </div>
+              <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cv" value="Yes">
+              </div>
+               <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cv" value="No">
+              </div>
+          </div><br>
+           <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">3. Print Quota</label>
+              </div>
+              <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cp" value="Yes">
+              </div>
+               <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cp" value="No">
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">4. Linux (LDAP) Account</label>
+              </div>
+              <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="rl" value="Yes">
+              </div>
+               <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="rl" value="No">
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">Specify the time duration of stay*:</label>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">From</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="date" placeholder="From" class="form-control" name="loginfrom" required id="from" onchange="dobc()"/>
+                   <p id="dobcheck" class="text-danger"></p>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">To:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="date" placeholder="To" class="form-control" name="loginto" required id="to" onchange="tenjc()"/>
+                   <p id="t" class="text-danger"></p>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">MAC Address*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Laptop/Desktop MAC Address" class="form-control" name="loginmac" required/>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">Purpose of IT Account:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Purpose of IT Account" class="form-control" name="loginpurpose" pattern="{a-zA-Z0-9.-/#}*"/>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">Attach the Proof of Affliation with NCP*:</label>
+              </div>
+              <div class="col-sm-4">
+                   <input type="file" class="form-control-file" required name="appfile" accept="application/pdf" onchange="AlertFilesize()" id="file"/>
+                  <p id="f" class="text-danger"></p>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Forward To*</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+              </div>
+
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          <a href="/back1"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+
+      </form>
+
+
+    </div>
+  </div>
+</div>
+<br>
+
+
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+    function dobc() {
+        var date1 = new Date(document.getElementById("from").value);
+        var date2=new Date();
+        if (date1<date2)
+        {
+            document.getElementById("dobcheck").innerHTML="Select after or today date";
+            document.getElementById("from").value='';
+        }
+        else
+        {
+            document.getElementById("dobcheck").innerHTML="";
+        }
+    }
+    function tenjc() {
+        var date1 = new Date(document.getElementById("from").value);
+        var date2 = new Date();
+        var date3 = new Date(document.getElementById("to").value);
+        if (date3<date1)
+        {
+            document.getElementById("t").innerHTML="Select date after '"+date1+"'";
+            document.getElementById("to").value='';
+        }
+        else
+        {
+            document.getElementById("t").innerHTML="";
+        }
+    }
+</script>
+<script type="text/javascript">
+function AlertFilesize(){
+    var fileSize = document.getElementById('file').files[0].size;
+    if(fileSize > 2000000) {
+       document.getElementById("f").innerHTML="Select file less than 2MB ";
+        document.getElementById('file').value='';}
+        else
+        {
+            document.getElementById("f").innerHTML='';
+        }
+}
+</script>
+{% endblock %}

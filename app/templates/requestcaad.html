@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid bg-3 text-left">
+    <h2 class="bg-primary text-center">Hosted Researchers Request</h2><br>
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10">
+             <table class="table table-bordered">
+                <thead class="bg-primary">
+                <th>#</th>
+                <th>Name</th>
+                <th>CNIC</th>
+                <th>Qualification</th>
+                <th>Category</th>
+                <th>View</th>
+                </thead>
+                <tbody>
+                {% for id, name,cnic,qua,cat in row %}
+                 <form action="{{ url_for('caadrequesttview') }}" method="post">
+                <tr>
+                    <td><input type="text" class="form-control" value="{{id}}" size="1" readonly name="id"></td>
+                    <td>{{name}}</td>
+                    <td>{{cnic}}</td>
+                    <td>{{qua}}</td>
+                    <td>{{cat}}</td>
+                    <td><button type="submit" class="btn btn-primary">View</button></td>
+                </tr>
+                     </form>
+                 {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('back3') }}"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+        </div>
+    </div>
+</div>
+</br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+{% endblock %}

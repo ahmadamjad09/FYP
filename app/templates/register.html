@@ -1,0 +1,412 @@
+{% extends "base1.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">NCP Hosted Researcher Registration Form</h2><br>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form method="post" action="/register_hosted" enctype="multipart/form-data">
+          {% for name,email in row%}
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Name*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Name" class="form-control" value="{{name}}" name="regname" required pattern="[A-Za-z' ']*" title="Name should only contain Letters and space" autofocus readonly/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">DOB*:</label>
+              </div>
+              <div class="col-sm-4" >
+                  <input type="date"  class="form-control" required  name="regdob" id="dob" onchange="dobc()"/>
+                  <p id="dobcheck" class="text-danger"></p>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">CNIC*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="12345-6789101-1" class="form-control" required pattern="[0-9-]{15}" name="regcnic" title="12345-6789101-1"/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Qualificatoin*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control" required name="regqua">
+                        <option value="Ph.d" onclick="dis('regqo')">Ph.d</option>
+                        <option value="M.Phil/Ms" onclick="dis('regqo')">M.Phil/MS</option>
+                        <option value="M.Sc" onclick="dis('regqo')">M.Sc</option>
+                       <option value="DAE" onclick="dis('regqo')">DAE</option>
+                        <option onclick="unable('regqo')" value="Others">Other</option>
+                    </select>
+                  <br>
+                   <input type="text" class="form-control" required pattern="[A-Za-z' ']*" name="reqqother" id="regqo" disabled title="Others should only contain Letters and space"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Select Province*:</label>
+              </div>
+              <div class="col-sm-4">
+                 <select name="hrp" size="1" class="form-control" id="province">s
+                     <option value="FATA" onclick="getcity()">FATA</option>
+                     <option value="Balochistan" onclick="getcity()">Balochistan</option>
+                     <option value="Punjab" onclick="getcity()">Punjab</option>
+                     <option value="Khyber_Pakhtunkwan" onclick="getcity()">Khyber Pakhtunkwan</option>
+                     <option value="Azad_Kashmir" onclick="getcity()">Azad Kashmir</option>
+                     <option value="Sindh" onclick="getcity()">Sindh</option>
+                     <option value="Gilgit_Baltistan" onclick="getcity()">Gilgit Baltistan</option>
+                     <option value="Islamabad" onclick="getcity()">Islamabad</option>
+
+                </select>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Select City*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select name="hrc" size="1" class="form-control" id="city">
+                  </select>
+                  <br>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Acadimic Record*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control" name="regacad">
+                        <option value="Throughout 1st Class">Throughout 1st Class</option>
+                        <option onclick="One 2nd Division in Career">One 2nd Division in Career</option>
+                    </select>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Present Status*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control" name="regps">
+                        <option value="Employee" onclick="dis('regps')">Employee
+                        </option>
+                        <option value="Presently Registered Student" onclick="dis('regps')">Presently Registered Student </option>
+                      <option onclick="unable('regps')" value="Others">Others</option>
+                    </select>
+                  <br>
+                  <input type="text" class="form-control" required pattern="[A-Za-z' ']*" name="reqpother" id="regps" disabled title="Others should only contain Letters and space"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Designation:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Designation(if Employed)" class="form-control" name="regpd" pattern="[A-Za-z' ']*" title="First letter Should be capital"/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Enrollment No.</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="University/College Enrollemnt number (if regular) " class="form-control" name="regpe" pattern="[0-9]*"/>
+              </div>
+          </div><br>
+         <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Org/Uni*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Present Organization/University" class="form-control" name="reguni" pattern="[A-Za-z' ']*" required title="First letter should be capital"/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Department*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Department" class="form-control" name="regud" pattern="[A-Za-z' ']*" title="First letter should be capital" required/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Permanent Address*:</label>
+              </div>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="Permanet Address" name="regpa" pattern="[A-Za-z' '.,-0-9#@]*" title="First letter should be capital" required/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Mailing Address*:</label>
+              </div>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="Mailing Address" name="regma" pattern="[A-Za-z' '.,-0-9#@]*" title="First letter should be capital" required/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Landline No.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Landline" class="form-control" pattern="[0-9]{7,}" name="regln" title="Only contains Numbers"/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Cell*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="03211234567" class="form-control" name="regc" pattern="[0-9]{11}"  required title="03211234567"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Email*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="email" placeholder="Email" class="form-control" required name="regem" value="{{email}}" readonly/>
+                  {%endfor%}
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Researchers Category*:</label>
+              </div>
+              <div class="col-sm-4">
+                 <select class="form-control" required name="regrc" >
+                        <option value="Adjunct Faculty">Adjunct Faculty </option>
+                        <option value="Visiting Scientist/Researcher Scholar">Visiting Scientist/Researcher Scholar </option>
+                        <option value="NCP Associate">NCP Associate</option>
+                        <option value="Post-Doc Fellow">Post-Doc Fellow</option>
+                        <option value="Ph.D Student">Ph.D Student</option>
+                        <option value="M.Phil/MS Student">M.Phil/MS Student</option>
+                        <option value="Internee">Internee</option>
+                    </select>
+
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Area/Department AT NCP*:</label>
+              </div>
+                  <div class="col-sm-4">
+                 <select class="form-control" required name="regdncp" >
+                        <option value="Theoretical Physics">Theoretical Physics </option>
+                        <option value="Experimental High Energy Physics">Experimental High Energy Physics </option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Experimental Physics Department">Experimental Physics Department</option>
+                        <option value="Atomic and Laser Plasma Physics">Atomic and Laser Plasma Physics</option>
+                        <option value="Vacuum Science and Technology">Vacuum Science and Technology</option>
+                        <option value="Centre for Earthquake Studies">Centre for Earthquake Studies</option>
+                        <option value="Collaboration and Academic Activities">Collaboration and Academic Activities</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Nano Science">Nano Science</option>
+                        <option value="Mechanical/Civil">Mechanical/Civil</option>
+                    </select>
+
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">Duration AT NCP*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Proposed Duration of Research Work At NCP" class="form-control" required name="regncpduration" pattern="[0-9]+" title="Only contain Number"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Supervisor From NCP*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="regncpsup" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+              </div>
+              <div class="col-sm-2" >
+                  <label class="col-form-label">Co Supervisor From NCP*</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control" required name="regncpcosup" >
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+              </div>
+          </div><br>
+          <div class="row ">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Supervisor Name*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Supervisor Name" class="form-control" name="hrsn" required pattern="[A-Za-z' ']*" title="Name should only contain Letters and space" />
+              </div>
+               <div class="col-sm-2">
+                  <label class="col-form-label">Department</label>
+              </div>
+              <div class="col-sm-4">
+                   <select class="form-control" required name="hrsnd" >
+                        <option value="Theoretical Physics">Theoretical Physics </option>
+                        <option value="Experimental High Energy Physics">Experimental High Energy Physics </option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Experimental Physics Department">Experimental Physics Department</option>
+                        <option value="Atomic and Laser Plasma Physics">Atomic and Laser Plasma Physics</option>
+                        <option value="Vacuum Science and Technology">Vacuum Science and Technology</option>
+                        <option value="Centre for Earthquake Studies">Centre for Earthquake Studies</option>
+                        <option value="Collaboration and Academic Activities">Collaboration and Academic Activities</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Nano Science">Nano Science</option>
+                        <option value="Mechanical/Civil">Mechanical/Civil</option>
+                    </select>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Tentative Date of Joining*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="date" class="form-control" required name="tendate" id="tenj" onchange="tenjc()">
+                  <p id="tenjcc" class="text-danger"></p>
+              </div>
+               <div class="col-sm-2">
+                  <label class="col-form-label">Gender*:</label>
+              </div>
+              <div class="col-sm-4">
+                   <select class="form-control" required name="hrg" >
+                        <option value="Male">Male</option>
+                       <option value="Female">Female</option>
+                    </select>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-6">
+                  <h4><b>Documents to be Attached</b></h4>
+              </div>
+          </div>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">1.Attested Copy Last Degree</label>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">2. Updated Brief CV</label>
+              </div>
+          </div><br>
+           <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">3. Attested Copy CNIC/Passport</label>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">4. Referral Letter From Parent Org/Uni/Department</label>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">4.Upload Passport Size Picture</label>
+              </div>
+             <div class="col-sm-6">
+                  <input type="file" name="regpicture" required accept="image/jpeg,image/gif,image/png"  onchange="AlertFilesize()" id="file"/>
+                  <p id="f" class="text-danger"></p>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">5. Police Verfication Performa</label>
+              </div>
+              <div class="col-sm-6">
+                  <a href="http://www.ncp.edu.pk/docs/caad/police-verification-form-2016.pdf" target="_blank">Download</a>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">6. Security Particulars Performa</label>
+              </div>
+              <div class="col-sm-6">
+                 <p>to be Submitted in Person</p>
+              </div>
+          </div><br>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+<script>
+  function unable(id)
+  {
+    document.getElementById(id).disabled=false;
+  }
+   function dis(id)
+  {
+    document.getElementById(id).disabled=true;
+  }
+  function getcity()
+  {
+    var province=document.getElementById('province').value;
+    var city=document.getElementById('city');
+    var provincecity = {
+    FATA: ["Bajaur Agency","Landi Kotal","Dara Adamkhel"],
+    Balochistan: ["Quetta","Gawadar","Khuzdar"],
+    Punjab:["Lahore","Multan","Faislabad","Rawalpindi"],
+    Khyber_Pakhtunkwan:["Peshawar","Abbottabad","Kohat","Mardan","Swat"],
+    Azad_Kashmir:["Bhimber","DhirKot","Leepa","Muzaffarabad"],
+    Sindh:["Karachi","Hyderabad","Sukkur","Larkana"],
+    Gilgit_Baltistan:["Astore","Gilgit","Jaglot","Skardu"],
+    Islamabad:["Islamabad"]
+
+};
+var cities=provincecity[province];
+while (city.length>0)
+{
+    city.remove(city.length-1);
+}
+for (i in cities)
+{
+    var opt=document.createElement("option");
+    opt.setAttribute("value",cities[i]);
+    opt.text=cities[i];
+    city.add(opt);
+}
+  }
+
+function dobc() {
+        var date1 = new Date(document.getElementById("dob").value);
+        var date2=new Date();
+        if (date1>=date2)
+        {
+            document.getElementById("dobcheck").innerHTML="Select Previous Date";
+            document.getElementById("dob").value=''
+        }
+        else
+        {
+            document.getElementById("dobcheck").innerHTML="";
+
+        }
+    }
+    function tenjc() {
+        var date1 = new Date(document.getElementById("tenj").value);
+        var date2=new Date();
+        if (date1<date2)
+        {
+            document.getElementById("tenjcc").innerHTML="Select after date ";
+            document.getElementById("tenj").value='';
+        }
+        else
+        {
+            document.getElementById("tenjcc").innerHTML="";
+        }
+    }
+
+</script>
+<script type="text/javascript">
+function AlertFilesize(){
+    var fileSize = document.getElementById('file').files[0].size;
+    if(fileSize > 2000000) {
+       document.getElementById("f").innerHTML="Select file less than 2MB ";
+        document.getElementById('file').value='';}
+        else
+        {
+            document.getElementById("f").innerHTML='';
+        }
+}
+</script>
+
+{% endblock %}

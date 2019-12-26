@@ -1,0 +1,66 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Create Account</h2><br>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <form method="post" enctype="multipart/form-data" action="/submit_form">
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Name*:</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" placeholder="Name"  name="name" required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Username*:</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  placeholder="Username" name="username" required>
+    </div>
+  </div>
+       <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Email*:</label>
+    <div class="col-sm-9">
+      <input type="email" class="form-control"  placeholder="Email" name="email" required>
+    </div>
+  </div>
+          <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Password*:</label>
+    <div class="col-sm-9">
+      <input type="password" class="form-control"  placeholder="Password" name="ps" required id="ps" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+    </div>
+  </div>
+        <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Confirm Password*:</label>
+    <div class="col-sm-9">
+      <input type="password" class="form-control"  placeholder="Confirm Password" name="cpss" required id="cpss">
+    </div>
+  </div>
+        <button type="submit" class="btn btn-primary mb-2" value="submit" onclick="return Validate()">Submit</button>
+        <a href="{{ url_for('back8') }}"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+</form>
+
+    </div>
+  </div>
+</div>
+<br>
+
+
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+    function Validate() {
+        var password = document.getElementById("ps").value;
+        var confirmPassword = document.getElementById("cpss").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+
+</script>
+{% endblock %}

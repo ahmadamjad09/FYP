@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid bg-3 text-left">
+    <h2 class="bg-primary text-center">Document Detail</h2><br>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+
+            <table class="table table-bordered">
+                {% for id, subject,status,content,written in row %}
+                 <tr>
+                    <th class="bg-primary">#</th>
+                    <td>{{id}}</td>
+                </tr>
+                <tr>
+                    <th class="bg-primary">Title</th>
+                    <td>{{subject}}</td>
+                </tr>
+                 <tr>
+                    <th class="bg-primary">Status</th>
+                    <td>{{status}}</td>
+                </tr>
+                 <tr>
+                    <th class="bg-primary">Content</th>
+                    <td>{{content}}</td>
+                </tr>
+                 {% endfor %}
+                <tr>
+                    <td class="bg-primary">Current Status</td>
+                    <td>{{name1}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="bg-primary text-center">Signed By</td>
+                </tr>
+                 <tr>
+                    <td colspan="2">
+                        <table class="table table-bordered">
+                            <thead class="bg-primary">
+                            <th >Name</th>
+                            <th>Comment</th>
+                            <th>Designation</th>
+                            </thead>
+                            <tbody>
+                             {% for comment, Name,designation in row2 %}
+                            <tr>
+                                <td>{{Name}}</td>
+                                <td>{{comment}}</td>
+                                <td>{{designation}}</td>
+                            </tr>
+                             {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+                 <button type="button" class="btn btn-primary mb-2" onclick="myFunction()">Print</button>
+                 <a href="{{url_for('back4')}}"><button type="button" class="btn btn-primary mb-2">Back</button></a>
+
+
+            </div>
+        </div>
+    </div>
+</div></br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+function myFunction() {
+  window.print();
+}
+</script>
+{% endblock %}

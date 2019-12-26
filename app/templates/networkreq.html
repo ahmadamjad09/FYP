@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Netwok Connection Request Form</h2><br>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form method="post" action="{{ url_for('network_request_save') }}">
+         <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">NCP ID No*.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="NCP ID No." class="form-control" readonly value="{{id}}"/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Building*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Building" class="form-control" name="logingbuilding" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+          </div><br>
+          <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">Floor*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Floor" class="form-control" name="loginflorr" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Room No*.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Room No." class="form-control" name="loginroom" pattern="{0-9}+" required/>
+              </div>
+          </div><br>
+         <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Forward To*:</label>
+              </div>
+              <div class="col-sm-4">
+                 <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+              </div>
+         </div>
+        <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">Specify the time duration of stay*</label>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">From</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="date" placeholder="From" class="form-control" required name="nfrom" id="from" onchange="dobc()"/>
+                  <p id="dobcheck" class="text-danger" ></p>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">To:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="date" placeholder="To" class="form-control" required name="nto" id="to" onchange="tenjc()"/>
+                  <p id="t" class="text-danger"></p>
+              </div>
+          </div><br>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+           <a href="/back1"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+  function unable()
+  {
+    document.getElementById('lf').disabled=false;
+  }
+   function dis()
+  {
+    document.getElementById('lf').disabled=true;
+  }
+function dobc() {
+        var date1 = new Date(document.getElementById("from").value);
+        var date2=new Date();
+        if (date1<date2)
+        {
+            document.getElementById("dobcheck").innerHTML="Select after date";
+            document.getElementById("from").value='';
+        }
+        else
+        {
+            document.getElementById("dobcheck").innerHTML="";
+        }
+    }
+    function tenjc() {
+        var date1 = new Date(document.getElementById("from").value);
+        var date2 = new Date();
+        var date3 = new Date(document.getElementById("to").value);
+        if (date3<date1)
+        {
+            document.getElementById("t").innerHTML="Select date after '"+date1+"'";
+            document.getElementById("to").value='';
+        }
+        else
+        {
+            document.getElementById("t").innerHTML="";
+        }
+    }
+</script>
+
+{% endblock %}

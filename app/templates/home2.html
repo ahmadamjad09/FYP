@@ -1,0 +1,41 @@
+{% extends "base1.html" %}
+{% block content %}
+<div class="jumbotron">
+  <div class="container text-center">
+    <img src="{{url_for ('static',  filename='images/EDH.png')}}" class="img-responsive"/>
+
+
+  </div>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+  <div class="row " >
+    <div class="col-sm-2">
+      <h2 class="bg-primary">Task</h2>
+    </div>
+  </div>
+
+  <div class="row Border">
+    {% if re==1 %}
+    <div class="col-sm-1">
+      <a href="/register"><h5>Registration</h5></a>
+      <a href="/register"> <img src="/static/images/register.png" class="img-responsive" alt="Hosted Researcher Registration"/></a>
+    </div>
+    {% endif %}
+    {% if re==2%}
+     <div class="col-sm-1">
+      <a href="/printregister"><h5>Print Form</h5></a>
+      <a href="/printregister"> <img src="/static/images/print.png" class="img-responsive" alt="Hosted Researcher Registration"/></a>
+    </div>
+    {% endif %}
+
+  </div>
+
+
+</div><br><br>
+
+<footer class="container-fluid text-center">
+</footer>
+{% endblock %}
+
+

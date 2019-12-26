@@ -1,0 +1,7 @@
+localhost server_Name
+NCP NCP_Database_Name
+sa NCP_UserName
+D@sql123 NCP_Password
+EDH EDH_Databese_Name
+sa EDH_UserName
+D@sql123 EDH_Password

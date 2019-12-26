@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">New Machine Issuance Form</h2><br>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form action="{{ url_for('machine_request_save') }}" method="post" enctype="multipart/form-data">
+         <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">NCP ID:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Name" class="form-control" readonly value="{{id}}"/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Room No.*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Room No." class="form-control"   pattern="{0-9}+" name="machineroom" required/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Building*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Building" class="form-control" pattern="{a-zA-Z0-9.-#}*"  name="machinebuilding" required/>
+              </div>
+             <div class="col-sm-2">
+                  <label class="col-form-label">Floor*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Floor" class="form-control" name="machineflorr" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+          </div><br>
+          <div class="row">
+
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Operating System*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control" name="machineos" required>
+                        <option onclick="dis()" value="Windows">Windows</option>
+                        <option onclick="unable()" value="Linux">Linux </option>
+                    </select>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">Mention Liux Flavor*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Linux Flavor" class="form-control" disabled id="lf" pattern="{a-zA-Z0-9.-#}*"  name="machineflavour" required/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Software Required*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Software Required" class="form-control" pattern="{a-zA-Z0-9.-#}*"  name="machinesoftware" required/>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">Comments:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Comments" class="form-control" pattern="{a-zA-Z0-9.-#}*"  name="machinecomment" />
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">Attach Requisition Slip*:</label>
+              </div>
+              <div class="col-sm-4">
+                   <input type="file" class="form-control-file"  name="appfile" accept="application/pdf" required onchange="AlertFilesize()" id="file"/>
+                  <p id="f" class="text-danger"></p>
+              </div></div><br>
+         <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label" >Forward To*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="appforward" required>
+                       {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                    </select>
+              </div>
+         </div>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          <a href="/back1"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+  function unable()
+  {
+    document.getElementById('lf').disabled=false;
+  }
+   function dis()
+  {
+    document.getElementById('lf').disabled=true;
+  }
+</script>
+<script type="text/javascript">
+function AlertFilesize(){
+    var fileSize = document.getElementById('file').files[0].size;
+    if(fileSize > 2000000) {
+       document.getElementById("f").innerHTML="Select file less than 2MB ";
+        document.getElementById('file').value='';}
+        else
+        {
+            document.getElementById("f").innerHTML='';
+        }
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Telephone Extension Requirement Form</h2><br>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form action="{{ url_for('telephone_request_save') }}" method="post">
+         <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">NCP Id.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="User Id" class="form-control" readonly value="{{id}}"/>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Building:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Building" class="form-control" name="logingbuilding" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+          </div><br>
+          <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">Floor:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Floor" class="form-control" name="loginflorr" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+               <div class="col-sm-2">
+                  <label class="col-form-label">Room No.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Room No." class="form-control" name="loginroom" pattern="{0-9}+" required/>
+              </div>
+          </div><br>
+         <div class="row">
+             <div class="col-sm-2">
+                   <label class="col-form-label">Telephone Type*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="ttype" required>
+
+                       <option value="Analog">Analog</option>
+                      <option value="Digital">Digital</option>
+                      <option value="IP Phone">IP Phone</option>
+                  </select>
+              </div>
+         </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label"><u>Services Required</u></label>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label"><u>Yes</u></label>
+              </div>
+               <div class="col-sm-2">
+                   <label class="col-form-label"><u>No</u></label>
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">1.Extension only (on campus access) </label>
+              </div>
+              <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="degree" value="Yes">
+              </div>
+               <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="degree" value="No">
+              </div>
+          </div><br>
+          <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">2.Nationwide Outgoing Calls</label>
+              </div>
+              <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cv" value="Yes">
+              </div>
+               <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cv" value="No">
+              </div>
+          </div><br>
+           <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">3.International Outgoing Calls</label>
+              </div>
+              <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cp" value="Yes">
+              </div>
+               <div class="col-sm-2">
+                  <input type="radio" class="form-check-input" name="cp" value="No">
+              </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm-2">
+                   <label class="col-form-label">Forward To*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+              </div>
+         </div>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          <a href="{{ url_for('Back1') }}"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+
+{% endblock %}

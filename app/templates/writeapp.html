@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+  
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Write Application</h2><br>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <form method="post" enctype="multipart/form-data" action="/save_app">
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">NCP ID</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" placeholder="ID" readonly name="appid" value="{{id}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Subject*</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  placeholder="Application Subject" name="appsub" pattern="[A-Za-z' ']*" required>
+    </div>
+  </div>
+        <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Content*</label>
+    <div class="col-sm-9">
+       <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Application Content" required name="appcontent" pattern="[a-zA-Z/@0-9.-,' ']"></textarea>
+    </div>
+  </div>
+          <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Forward To*</label>
+    <div class="col-sm-9">
+       <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+    </div>
+  </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Attach file*</label>
+          <div class="col-sm-9">
+             <input type="file" class="form-control-file"  required name="appfile" accept="application/pdf" onchange="AlertFilesize()" id="file">
+             <p id="f" class="text-danger"></p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+       <a href="{{url_for('Back')}}"><button type="button" class="btn btn-primary mb-2">Back</button></a>
+</form>
+
+    </div>
+  </div>
+</div>
+<br>
+
+
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script type="text/javascript">
+function AlertFilesize(){
+    var fileSize = document.getElementById('file').files[0].size;
+    if(fileSize > 2000000) {
+       document.getElementById("f").innerHTML="Select file less than 2MB ";
+        document.getElementById('file').value='';}
+        else
+        {
+            document.getElementById("f").innerHTML='';
+        }
+}
+</script>
+{% endblock %}

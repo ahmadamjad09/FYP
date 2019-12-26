@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid bg-3 text-left">
+    <h2 class="text-center bg-primary">Hosted Resercher Detail</h2>
+
+  <div class="row">
+      <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+       <img src="/static/images/ncp.png" class="img-responsive" alt="Write Application"/>
+    </div>
+      <div class="col-sm-6"></div>
+    <div class="col-sm-2">
+
+
+       <img src="data:;base64,{{ image }}" class="img-responsive" alt="Passport Size Image"/>
+    </div>
+      <div class="col-sm-1"></div>
+
+  </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+             <form method="post" action="{{ url_for('idnew') }}">
+            <table class="table table-bordered">
+                {% for i in row %}
+
+                <tbody>
+                <tr>
+                    <th>Name:</th>
+                    <td>{{i[1]}}</td>
+                    <th>Date of Birth</th>
+                    <td>{{i[2]}}</td>
+                    <th>CNIC No.</th>
+                    <td>{{i[3]}}</td>
+                </tr>
+                 <tr>
+                    <th>Highest Qualification:</th>
+                    <td>{{i[4]}}</td>
+                    <th>Academic Record</th>
+                    <td>{{i[5]}}</td>
+                    <th>Present Status</th>
+                    <td>{{i[6]}}</td>
+                </tr>
+                 <tr>
+                    <th>Designation (If Employed</th>
+                    <td>{{i[7]}}</td>
+                    <th>Uni/College Enrollment No.</th>
+                    <td>{{i[8]}}</td>
+                    <th>Present Org/Uni</th>
+                    <td>{{i[9]}}</td>
+                </tr>
+                 <tr>
+                    <th>Department</th>
+                    <td>{{i[10]}}</td>
+                    <th>Permanent Address</th>
+                    <td>{{i[11]}}}</td>
+                    <th>Mailling Address</th>
+                    <td>{{i[12]}}</td>
+                </tr>
+                 <tr>
+                    <th>Landline No.</th>
+                    <td>{{i[13]}}</td>
+                    <th>Cell</th>
+                    <td>{{i[14]}}</td>
+                    <th>E-mail</th>
+                    <td>{{i[15]}}</td>
+                </tr>
+                 <tr>
+                    <th>Category</th>
+                    <td>{{i[16]}}</td>
+                    <th>Department at NCP</th>
+                    <td>{{i[17]}}</td>
+                    <th>Duration at NCP</th>
+                    <td>{{i[18]}}</td>
+                </tr>
+                 <tr>
+                    <th>Supervisor from NCP</th>
+                    <td>{{i[19]}}</td>
+                    <th>Co-supervisor from NCP</th>
+                    <td>{{i[20]}}</td>
+                    <th>Supervisor Name</th>
+                    <td>{{i[21]}}</td>
+                </tr>
+                 <tr>
+                    <th>Supervisor Department</th>
+                    <td>{{i[22]}}</td>
+                    <th>Tentative Date of Joining</th>
+                    <td>{{i[23]}}</td>
+                    <th>Gender</th>
+                    <td>{{i[24]}}</td>
+                </tr>
+                 <tr>
+                    <th>Province</th>
+                    <td>{{i[25]}}</td>
+                    <th>City</th>
+                    <td>{{i[26]}}</td>
+                    <th>ID.</th>
+
+                    <td><input type="text" name="id" value="{{i[0]}}" readonly  class="form-control"></td>
+                </tr>
+                </tbody>
+                {%endfor%}
+
+            </table>
+                 <br>
+                 <input type="text" name="newid" required class="form-control" placeholder="New Id"/>
+                 <br>
+                 <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                 <a href="{{ url_for('back3') }}"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+        </form>
+        </div>
+    </div>
+    <br>
+</div><br><br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+{% endblock %}

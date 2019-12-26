@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <div class="container text-center">
+     <img src="{{url_for ('static',  filename='images/EDH.png')}}" class="img-responsive"/>
+
+  </div>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+  <div class="row " >
+    <div class="col-sm-2">
+      <h2 class="bg-primary">Task</h2>
+    </div>
+  </div>
+
+  <div class="row Border">
+    <div class="col-sm-1">
+      <a href="{{url_for ('uni')}}"><h5>Reports</h5></a>
+      <a href="{{url_for ('uni')}}"> <img src="{{url_for ('static',  filename='images/report.png')}}" class="img-responsive" alt="Report"/></a>
+    </div>
+    <div class="col-sm-1">
+      <a href="{{url_for ('requesttocaad')}}"><h5>Request</h5></a>
+      <a href="{{url_for ('requesttocaad')}}"> <img src="{{url_for ('static',  filename='images/request.png')}}" class="img-responsive" alt="Request"/></a>
+    </div>
+
+  </div>
+
+</div><br><br>
+
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+{% endblock %}
+

@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">IT Equipment Issuance Form</h2><br>
+
+  <div class="row"><div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+      <form action="{{ url_for('save_itequipments_request') }}" method="post" enctype="multipart/form-data">
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">NCP ID No.</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="NCP ID No." class="form-control" readonly value="{{id}}"/>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Location:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="Location" class="form-control" name="location" pattern="{a-zA-Z0-9.-#}*" required/>
+              </div>
+          </div><br>
+         <div class="row text-left">
+              <div class="col-sm-6">
+
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-4">
+                  <input type="hidden" placeholder="From" class="form-control" name="tfrom"  value="00:00:00"/>
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-4">
+                  <input type="hidden" placeholder="To" class="form-control" name="tto" value="00:00:00"/>
+              </div>
+          </div><br>
+         <div class="row text-left">
+              <div class="col-sm-6">
+                  <label class="col-form-label">Date*:</label>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">From</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="date" placeholder="From" class="form-control" name="dfrom" required  id="from" onchange="dobc()"/>
+                  <p id="dobcheck" class="text-danger"></p>
+              </div>
+              <div class="col-sm-2">
+                   <label class="col-form-label">To:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="date" placeholder="To" class="form-control" name="dto" required id="to" onchange="tenjc()"/>
+                  <p id="t" class="text-danger"></p>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Laptop/PC</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checklaptop"  value="Yes"/>
+              </div>
+               <div class="col-sm-2">
+                   <label class="col-form-label">Mouse</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkmouse"  value="Yes"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Keyboard</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkkeyboard"  value="Yes"/>
+              </div>
+               <div class="col-sm-2">
+                   <label class="col-form-label">Speakers</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkspeaker"  value="Yes"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Presenter</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkPresenter"  value="Yes"/>
+              </div>
+               <div class="col-sm-2">
+                   <label class="col-form-label">Pointer</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkPointer"  value="Yes"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Projector</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkProjector"  value="Yes"/>
+              </div>
+               <div class="col-sm-2">
+                   <label class="col-form-label">Mico Phone</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkmicro" value="Yes"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">HDMI/Apple</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checkhdmi"  value="Yes""/>
+              </div>
+               <div class="col-sm-2">
+                   <label class="col-form-label">Tripod Multimedia Screen</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="checkbox" class="form-control" name="checktripod"  value="Yes"/>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-sm-2">
+                  <label class="col-form-label">Forward To*</label>
+              </div>
+
+              <div class="col-sm-4">
+                  <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+              </div>
+
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          <a href="{{ url_for('Back1') }}"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+    function dobc() {
+        var date1 = new Date(document.getElementById("from").value);
+        var date2=new Date();
+        if (date1<date2)
+        {
+            document.getElementById("dobcheck").innerHTML="Select after date";
+             document.getElementById("from").value='';
+        }
+        else
+        {
+            document.getElementById("dobcheck").innerHTML="";
+
+        }
+    }
+    function tenjc() {
+        var date1 = new Date(document.getElementById("from").value);
+        var date2 = new Date();
+        var date3 = new Date(document.getElementById("to").value);
+        if (date3<date1)
+        {
+            document.getElementById("t").innerHTML="Select date after '"+date1+"'";
+            document.getElementById("to").value='';
+        }
+        else
+        {
+            document.getElementById("t").innerHTML="";
+        }
+    }
+    </script>
+{% endblock %}

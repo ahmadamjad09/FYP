@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">
+
+      <h2 class="bg-primary text-center">Print Quota Request Form</h2><br>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form action="{{ url_for('print_request_save') }}" method="post">
+         <div class="row">
+             <div class="col-sm-2">
+                  <label class="col-form-label">NCP Id.:</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="User Id" class="form-control" readonly value="{{id}}"/>
+              </div>
+              <div class="col-sm-2">
+                  <label class="col-form-label">Pages To Add* :</label>
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" placeholder="pages" class="form-control" required name="pages" pattern="[0-9]+"/>
+              </div>
+          </div><br>
+         <div class="row">
+              <div class="col-sm-2">
+                   <label class="col-form-label">Forward To*:</label>
+              </div>
+              <div class="col-sm-4">
+                  <select class="form-control"  name="appforward" required>
+                               {% for id, name,designation in row %}
+                       <option value="{{id}}">{{name}}   Designation: {{designation}}</option>
+                                {% endfor %}
+                  </select>
+              </div>
+         </div>
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          <a href="/back1"><button type="button" class="btn btn-primary mb-2">Back</button> </a>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+<br>
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+<script>
+  function unable()
+  {
+    document.getElementById('lf').disabled=false;
+  }
+   function dis()
+  {
+    document.getElementById('lf').disabled=true;
+  }
+</script>
+
+{% endblock %}

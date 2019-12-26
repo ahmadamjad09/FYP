@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <div class="container text-center">
+       <img src="{{url_for ('static',  filename='images/EDH.png')}}" class="img-responsive"/>
+  </div>
+</div>
+
+
+<div class="container-fluid bg-3 text-center">
+         {% if row %}
+		    <h3 class="text-success">{{row}}</h3>
+		 {% endif %}
+      <h2 class="bg-primary">Services</h2><br>
+  <div class="row">
+    <div class="col-sm-2">
+      <h2 class="bg-primary">Request</h2>
+    </div>
+  </div>
+  <div class="row Border">
+    <div class="col-sm-1">
+        <a href="{{ url_for('login_request') }}"><h5>login</h5></a>
+        <a href="{{ url_for('login_request') }}"> <img src="{{url_for ('static',  filename='images/loginreques.png')}}" class="img-responsive" alt="Write Application"/></a>
+    </div>
+    <div class="col-sm-1">
+        <a href="{{ url_for('machine_request') }}"> <h5>Machine</h5></a>
+        <a href="{{ url_for('machine_request') }}"><img src="{{url_for ('static',  filename='images/machine.png')}}" class="img-responsive" alt="New Machine Issuance"/></a>
+    </div>
+    <div class="col-sm-1">
+        <a href="{{ url_for('network_request') }}"> <h5>Network</h5></a>
+        <a href="{{ url_for('network_request') }}"> <img src="{{url_for ('static',  filename='images/network.png')}}" class="img-responsive" alt="Network"/></a>
+    </div>
+   <div class="col-sm-1">
+       <a href="{{ url_for('print_request') }}"> <h5>Print</h5></a>
+       <a href="{{ url_for('print_request') }}"> <img src="{{url_for ('static',  filename='images/print.png')}}" class="img-responsive" alt="Print "/></a>
+    </div>
+    <div class="col-sm-1">
+        <a href="{{ url_for('mail_request') }}"> <h5>Email</h5></a>
+        <a href="{{ url_for('mail_request') }}"> <img src="{{url_for ('static',  filename='images/email.png')}}" class="img-responsive" alt="Email"/></a>
+    </div>
+    <div class="col-sm-1">
+        <a href="{{ url_for('passwordreset_request') }}"> <h5>Password</h5></a>
+        <a href="{{ url_for('passwordreset_request') }}"> <img src="{{url_for ('static',  filename='images/password.png')}}" class="img-responsive" alt="Passwork Reset"/></a>
+    </div>
+    <div class="col-sm-1">
+        <a href="{{ url_for('softwareForm') }}"><h5>Software</h5></a>
+        <a href="{{ url_for('softwareForm') }}"><img src="{{url_for ('static',  filename='images/software.png')}}" class="img-responsive" alt="Software"/></a>
+    </div>
+      <div class="col-sm-1">
+          <a href="{{ url_for('clusterForm') }}"> <h5>Cluster</h5></a>
+          <a href="{{ url_for('clusterForm') }}"> <img src="{{url_for ('static',  filename='images/cluster.png')}}" class="img-responsive" alt="Cluster Login"/></a>
+      </div>
+      <div class="col-sm-1">
+          <a href="{{ url_for('clearanceform') }}"> <h5>Clearance</h5></a>
+          <a href="{{ url_for('clearanceform') }}"> <img src="{{url_for ('static',  filename='images/clear.png')}}" class="img-responsive" alt="IT Clearance"/></a>
+      </div>
+      <div class="col-sm-1">
+          <a href="{{ url_for('equipmentform') }}"><h5>Equipment</h5></a>
+          <a href="{{ url_for('equipmentform') }}"> <img src="{{url_for ('static',  filename='images/equip.png')}}" class="img-responsive" alt="IT Equipment"/></a>
+      </div>
+      <div class="col-sm-1">
+          <a href="{{ url_for('webform') }}"> <h5>Website</h5></a>
+          <a href="{{ url_for('webform') }}"><img src="{{url_for ('static',  filename='images/web.png')}}" class="img-responsive" alt="Personal Website"/></a>
+      </div>
+      <div class="col-sm-1">
+          <a href="{{ url_for('colorprintform') }}"> <h5>Color Print</h5></a>
+          <a href="{{ url_for('colorprintform') }}"><img src="{{url_for ('static',  filename='images/colorprint.png')}}" class="img-responsive" alt="Color Print"/></a>
+      </div>
+  </div>
+    <div class="row Border">
+        <div class="col-sm-1">
+            <a href="{{ url_for('telephoneform') }}"> <h5>Telephone</h5></a>
+            <a href="{{ url_for('telephoneform') }}"> <img src="{{url_for ('static',  filename='images/telephone.png')}}" class="img-responsive" alt="Telephone Extension"/></a>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<footer class="container-fluid text-center">
+  <p>&#169; Design and Develop By Muhammad Ahmad</p>
+</footer>
+{% endblock %}
+
+

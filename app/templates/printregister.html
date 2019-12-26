@@ -1,0 +1,166 @@
+{% extends "base1.html" %}
+{% block content %}
+<div class="container-fluid bg-3 text-center">
+    <h2 class="text-center">NCP Hosted Researcher Registration Form</h2>
+
+  <div class="row">
+      <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+       <img src="/static/images/ncp.png" class="img-responsive" alt="Write Application"/>
+    </div>
+      <div class="col-sm-6"></div>
+    <div class="col-sm-2">
+
+
+       <img src="data:;base64,{{ image }}" class="img-responsive" alt="Passport Size Image"/>
+    </div>
+      <div class="col-sm-1"></div>
+
+  </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <table class="table table-bordered">
+                {% for i in row %}
+
+                <tbody>
+                <tr>
+                    <th>Name:</th>
+                    <td>{{i[1]}}</td>
+                    <th>Date of Birth</th>
+                    <td>{{i[2]}}</td>
+                    <th>CNIC No.</th>
+                    <td>{{i[3]}}</td>
+                </tr>
+                 <tr>
+                    <th>Highest Qualification:</th>
+                    <td>{{i[4]}}</td>
+                    <th>Academic Record</th>
+                    <td>{{i[5]}}</td>
+                    <th>Present Status</th>
+                    <td>{{i[6]}}</td>
+                </tr>
+                 <tr>
+                    <th>Designation (If Employed</th>
+                    <td>{{i[7]}}</td>
+                    <th>Uni/College Enrollment No.</th>
+                    <td>{{i[8]}}</td>
+                    <th>Present Org/Uni</th>
+                    <td>{{i[9]}}</td>
+                </tr>
+                 <tr>
+                    <th>Department</th>
+                    <td>{{i[10]}}</td>
+                    <th>Permanent Address</th>
+                    <td>{{i[11]}}}</td>
+                    <th>Mailling Address</th>
+                    <td>{{i[12]}}</td>
+                </tr>
+                 <tr>
+                    <th>Landline No.</th>
+                    <td>{{i[13]}}</td>
+                    <th>Cell</th>
+                    <td>{{i[14]}}</td>
+                    <th>E-mail</th>
+                    <td>{{i[15]}}</td>
+                </tr>
+                 <tr>
+                    <th>Category</th>
+                    <td>{{i[16]}}</td>
+                    <th>Department at NCP</th>
+                    <td>{{i[17]}}</td>
+                    <th>Duration at NCP</th>
+                    <td>{{i[18]}}</td>
+                </tr>
+                 <tr>
+                    <th>Supervisor from NCP</th>
+                    <td>{{i[19]}}</td>
+                    <th>Co-supervisor from NCP</th>
+                    <td>{{i[20]}}</td>
+                    <th>Supervisor Name</th>
+                    <td>{{i[21]}}</td>
+                </tr>
+                 <tr>
+                    <th>Supervisor Department</th>
+                    <td>{{i[22]}}</td>
+                    <th>Tentative Date of Joining</th>
+                    <td>{{i[23]}}</td>
+                    <th>Gender</th>
+                    <td>{{i[24]}}</td>
+                </tr>
+                 <tr>
+                    <th>Province</th>
+                    <td>{{i[25]}}</td>
+                    <th>City</th>
+                    <td>{{i[26]}}</td>
+                    <th>ID.</th>
+                    <td>{{i[0]}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="row text-left">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <p><b>I Mr./MS/Dr. {{i[1]}} hereby undertake that:-</b></p>
+            <p>(a). Upon acceptance, I shall pay</p>
+            <ol>
+                <li><b>Registrarion Fee: </b>(RS.750/-for internees students, Rs.1000/-M-Phil/Ph.D students. Rs. 1500/- Researcher Associates & Post-Doctoral Fellows and Rs. 2000/- for employess of University/ R&D organization and other from HEC recongnized institutions/Goverment Departments</li>
+                <li><b>Security Fee:</b> (Rs. 5000/- for internees students, Rs. 10000/- for M-phil/MS & Ph.D Students), security fee is refundable upon completion of research work and subject to submission of Final Clearance Certificate & NCP identity Card/Entry Card</li>
+                <li><b>Bench Fee:</b> If Student/parent university institue choose reseach supervisor form NCP as a co-supervisor, then the bench fee will be charged (Rs. 4000/- per semester for M.phil students and Rs. 6000/- per semester fro Ph.D students).</li>
+                <li><b>Fine:</b> I understand that a fine of Rs. 1000/-per week will be charged to me out of my deposited security if i fail to submit Clearance Certificate to CAAD wihtin one week after the due date of completion of my research work.</li>
+            </ol>
+            <p>(b) I have throughly read contents of the NCP Hosted Researcher Policy-Revised 2016. I shall abide by rules/regulations mentioned in the NCP Hosted Researhcers Policy & procedures during stay at NCP. Upon compeltion of work, I shal immediately submit Clearance Proforma and entry card to CAAD/NCP. In case of damage of NCP property, NCP can retain m security fee (Under intimation to my parent department/Univeristy/organization)Untill i Pay the damage(s)/loss within a period of one month.</p>
+            <p><b>Signature of Applicant/Date:</b> _________________________________</p>
+            <p><b><u>To be Completed by Applicant's Parent Institution/University</u></b></p>
+            <p>We hereby certify that the applicant Mr./Ms./Dr. {{i[1]}} S/D of ________________ is presently a regular student/employee with Registration No./PIN No. {{row[8]}} at our Department/Institution/Universiy. We have thorougly read contents of NCP Hosted Researchers Poilicy (Revised-2016). We hereby recommend the above mentioned applicant for resercher work at NCP in the above specified category (our Referral Letter is attached in Original) and are willing to provide/pay for any consumables towards experiments work of the said researcher at NCP Campus (if applicable after dicussion with the Supervisor/Co-Supervisor at NCP campus</p>
+            <p><b><u>Supervisor/Co-Supervisor of Parent Department</u></b></p>
+            <p>Name:__________________________ Designation:___________________________ </p>
+            <p>Department:____________________ Signatue with Date/Stamp:_______________________</p>
+            <p><b>Counter signature with Name, Designation & Date of Head/Chairperson of Parent Universiy</b> ______________________________</p>
+            <br>
+            <center><p>.................................................<b><u>For NCP Office Use Only</u></b>.......................................</p></center>
+            <p>Name of Applicant: __________________________ Department: _____________________________ Application No._____________________________</p>
+            <ul>
+                <li>Academic Record (As Per Policy)                     <b>Acceptable</b><input type="checkbox">                <b>Not Acceptable</b><input type="checkbox"></li>
+                <li>Financial Matter is Involve:<b>Yes<input type="checkbox"></b><b>No<input type="checkbox"></b></li>
+                <li>Whether Application is Fit for Further Processing as per H.R Policy:<b>Yes<input type="checkbox"></b><b>No<input type="checkbox"></b></li>
+            </ul>
+            <p><b><u>Signature/Date: </u></b>  JE A&IA:_______________________ Manager A&IA: ____________________ Director CAAD: ________________</p>
+            <br>
+            <p><b><u>Remarks on Avaialability of Budget (if required):    Funds Available:</u></b>    Yes <input type="checkbox">    No <input type="checkbox"></p>
+            <p><b><u>Signature/Date: </u></b>Manager Finance: ________________     Director Finance:_____________________</p>
+            <br>
+            <p><b><u>Recommendation / Approvals by Relevant Department at NCP:</u></b></p>
+            <ul>
+                <li>Application is Considered:  <b>Accepted</b><input type="checkbox">                <b>Rejected</b><input type="checkbox"> </li>
+                <li>In Case of Acceptance, <b>Dr./ Mr. / MS</b> is designated as Supervisor/Co-supervisor of applicant during researcher work at NCP Campus.</li>
+            </ul>
+            <p><b><u>Signature/Date: </u></b>Supervisor / Co-supervisor: _____________________ Concerned Director:__________________</p>
+            <br>
+            <p><b><u>Approval of Director General NCP:    Signature/Date:</u></b>__________________-</p>
+            <p>Director CAAD: ______________________  Manager A&IA: ___________________________________</p>
+            <p>JE A&IA: _____________________________ TORs letter issued on: ____________________________</p>
+        </div>
+    </div>
+    {%endfor%}
+    <button onclick="myFunction()" id="pri" class="btn btn-primary mb-2">Print</button>
+
+
+
+
+</div><br><br>
+<script>
+function myFunction() {
+ document.getElementById("pri").style.display = "none";
+  window.print();
+}
+</script>
+
+
+
+{% endblock %}
